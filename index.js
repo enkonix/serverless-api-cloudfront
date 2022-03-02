@@ -69,7 +69,7 @@ class ServerlessApiCloudFrontPlugin {
     this.prepareWaf(distributionConfig);
     this.prepareCompress(distributionConfig);
     this.prepareMinimumProtocolVersion(distributionConfig);
-    this.prepareRobotsBucket(distributionConfig);
+    //this.prepareRobotsBucket(distributionConfig);
   }
 
   prepareLogging(distributionConfig) {
