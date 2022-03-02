@@ -19,13 +19,33 @@ Resources:
             OriginProtocolPolicy: https-only
             OriginSSLProtocols: [ "TLSv1", "TLSv1.1", "TLSv1.2" ]
           # OriginPath: "/dev"
+        - Id: Robots
+          DomainName: "s3.amazonaws.com"
+          CustomOriginConfig:
+            HTTPPort: '80'
+            HTTPSPort: '443'
+            OriginProtocolPolicy: http-only
         Enabled: true
         HttpVersion: http2
         Comment: cdn for api gateway
         Aliases:
           - domain.tld
         PriceClass: PriceClass_All
-        DefaultCacheBehavior:
+        CacheBehaviors:
+        - PathPattern: /robots.txt
+          AllowedMethods:
+          - GET
+          - HEAD
+          ForwardedValues:
+            QueryString: true
+            Headers: []
+            Cookies:
+              Forward: all
+          MinTTL: '0'
+          DefaultTTL: '0'
+          TargetOriginId: Robots
+          ViewerProtocolPolicy: redirect-to-https
+        - PathPattern: *
           AllowedMethods:
           - DELETE
           - GET

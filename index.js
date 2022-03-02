@@ -69,6 +69,7 @@ class ServerlessApiCloudFrontPlugin {
     this.prepareWaf(distributionConfig);
     this.prepareCompress(distributionConfig);
     this.prepareMinimumProtocolVersion(distributionConfig);
+    this.prepareRobotsBucket(distributionConfig);
   }
 
   prepareLogging(distributionConfig) {
@@ -90,6 +91,14 @@ class ServerlessApiCloudFrontPlugin {
       distributionConfig.Aliases = Array.isArray(domain) ? domain : [ domain ];
     } else {
       delete distributionConfig.Aliases;
+    }
+  }
+
+  prepareRobotsBucket(distributionConfig) {
+    const robotsS3BucketURL = this.getConfig('robotsS3BucketURL', null);
+
+    if (robotsS3BucketURL) {
+      distributionConfig.Origins[1].DomainName = robotsS3BucketURL;
     }
   }
 
