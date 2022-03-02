@@ -38,13 +38,14 @@ Resources:
           - HEAD
           ForwardedValues:
             QueryString: true
-            Headers: ['*']
+            Headers: []
             Cookies:
               Forward: all
           MinTTL: '0'
           DefaultTTL: '0'
           TargetOriginId: Robots
           ViewerProtocolPolicy: redirect-to-https
+          Compress: true
         DefaultCacheBehavior:
           AllowedMethods:
           - DELETE
