@@ -38,7 +38,7 @@ Resources:
           - HEAD
           ForwardedValues:
             QueryString: true
-            Headers: []
+            Headers: ['*']
             Cookies:
               Forward: all
           MinTTL: '0'
