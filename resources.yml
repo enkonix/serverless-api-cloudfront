@@ -32,10 +32,18 @@ Resources:
           - domain.tld
         PriceClass: PriceClass_All
         CacheBehaviors:
-        - PathPattern: /robots.txt
+        - PathPattern: /test*
           AllowedMethods:
+          - DELETE
           - GET
           - HEAD
+          - OPTIONS
+          - PATCH
+          - POST
+          - PUT
+          CachedMethods:
+          - HEAD
+          - GET
           ForwardedValues:
             QueryString: true
             Headers: []
@@ -43,8 +51,21 @@ Resources:
               Forward: all
           MinTTL: '0'
           DefaultTTL: '0'
-          TargetOriginId: Robots
+          TargetOriginId: ApiGateway
           ViewerProtocolPolicy: redirect-to-https
+#        - PathPattern: /robots.txt
+#          AllowedMethods:
+#          - GET
+#          - HEAD
+#          ForwardedValues:
+#            QueryString: true
+#            Headers: []
+#            Cookies:
+#              Forward: all
+#          MinTTL: '0'
+#          DefaultTTL: '0'
+#          TargetOriginId: Robots
+#          ViewerProtocolPolicy: redirect-to-https
         - PathPattern: /*
           AllowedMethods:
           - DELETE
