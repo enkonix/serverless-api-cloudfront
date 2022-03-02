@@ -113,9 +113,9 @@ class ServerlessApiCloudFrontPlugin {
 
   prepareCookies(distributionConfig) {
       const forwardCookies = this.getConfig('cookies', 'all');
-      distributionConfig.DefaultCacheBehavior.ForwardedValues.Cookies.Forward = Array.isArray(forwardCookies) ? 'whitelist' : forwardCookies;
+      distributionConfig.CacheBehaviors[1].ForwardedValues.Cookies.Forward = Array.isArray(forwardCookies) ? 'whitelist' : forwardCookies;
       if (Array.isArray(forwardCookies)) {
-        distributionConfig.DefaultCacheBehavior.ForwardedValues.Cookies.WhitelistedNames = forwardCookies;
+        distributionConfig.CacheBehaviors[1].ForwardedValues.Cookies.WhitelistedNames = forwardCookies;
       }
   }
   
@@ -123,9 +123,9 @@ class ServerlessApiCloudFrontPlugin {
       const forwardHeaders = this.getConfig('headers', 'none');
       
       if (Array.isArray(forwardHeaders)) {
-        distributionConfig.DefaultCacheBehavior.ForwardedValues.Headers = forwardHeaders;
+        distributionConfig.CacheBehaviors[1].ForwardedValues.Headers = forwardHeaders;
       } else {
-        distributionConfig.DefaultCacheBehavior.ForwardedValues.Headers = forwardHeaders === 'none' ? [] : ['*'];
+        distributionConfig.CacheBehaviors[1].ForwardedValues.Headers = forwardHeaders === 'none' ? [] : ['*'];
       }
     }
 
@@ -133,10 +133,10 @@ class ServerlessApiCloudFrontPlugin {
         const forwardQueryString = this.getConfig('querystring', 'all');
         
         if (Array.isArray(forwardQueryString)) {
-          distributionConfig.DefaultCacheBehavior.ForwardedValues.QueryString = true;
-          distributionConfig.DefaultCacheBehavior.ForwardedValues.QueryStringCacheKeys = forwardQueryString;
+          distributionConfig.CacheBehaviors[1].ForwardedValues.QueryString = true;
+          distributionConfig.CacheBehaviors[1].ForwardedValues.QueryStringCacheKeys = forwardQueryString;
         } else {
-          distributionConfig.DefaultCacheBehavior.ForwardedValues.QueryString = forwardQueryString === 'all' ? true : false;
+          distributionConfig.CacheBehaviors[1].ForwardedValues.QueryString = forwardQueryString === 'all' ? true : false;
         }
       }
 
@@ -166,7 +166,7 @@ class ServerlessApiCloudFrontPlugin {
   }
   
   prepareCompress(distributionConfig) {
-    distributionConfig.DefaultCacheBehavior.Compress = (this.getConfig('compress', false) === true) ? true : false;
+    distributionConfig.CacheBehaviors[1].Compress = (this.getConfig('compress', false) === true) ? true : false;
   }
 
   prepareMinimumProtocolVersion(distributionConfig) {
