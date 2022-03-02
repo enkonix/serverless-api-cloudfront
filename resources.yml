@@ -45,7 +45,7 @@ Resources:
           DefaultTTL: '0'
           TargetOriginId: Robots
           ViewerProtocolPolicy: redirect-to-https
-        - PathPattern: *
+        - PathPattern: /*
           AllowedMethods:
           - DELETE
           - GET
