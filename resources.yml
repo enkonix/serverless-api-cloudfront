@@ -19,12 +19,12 @@ Resources:
             OriginProtocolPolicy: https-only
             OriginSSLProtocols: [ "TLSv1", "TLSv1.1", "TLSv1.2" ]
           # OriginPath: "/dev"
-        - Id: Robots
-          DomainName: "s3.amazonaws.com"
-          CustomOriginConfig:
-            HTTPPort: '80'
-            HTTPSPort: '443'
-            OriginProtocolPolicy: http-only
+#        - Id: Robots
+#          DomainName: "s3.amazonaws.com"
+#          CustomOriginConfig:
+#            HTTPPort: '80'
+#            HTTPSPort: '443'
+#            OriginProtocolPolicy: http-only
         Enabled: true
         HttpVersion: http2
         Comment: cdn for api gateway
