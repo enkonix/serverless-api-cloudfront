@@ -9,7 +9,7 @@ Resources:
           DomainName:
             Fn::Join:
               - ""
-              - - Ref: ApiGatewayRestApi
+              - - Ref: HttpApi
                 - ".execute-api."
                 - Ref: AWS::Region
                 - ".amazonaws.com"
@@ -18,7 +18,7 @@ Resources:
             HTTPSPort: '443'
             OriginProtocolPolicy: https-only
             OriginSSLProtocols: [ "TLSv1", "TLSv1.1", "TLSv1.2" ]
-          OriginPath: "/dev"
+          OriginPath: ""
         - Id: Robots
           DomainName: "s3.amazonaws.com"
           CustomOriginConfig:
