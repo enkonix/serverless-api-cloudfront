@@ -60,7 +60,7 @@ class ServerlessApiCloudFrontPlugin {
     this.prepareLogging(distributionConfig);
     this.prepareDomain(distributionConfig);
     this.preparePriceClass(distributionConfig);
-    // this.prepareOrigins(distributionConfig);
+    this.prepareOrigins(distributionConfig);
     this.prepareCookies(distributionConfig);
     this.prepareHeaders(distributionConfig);
     this.prepareQueryString(distributionConfig);
@@ -92,6 +92,21 @@ class ServerlessApiCloudFrontPlugin {
     } else {
       delete distributionConfig.Aliases;
     }
+    distributionConfig.Origins[0].DomainName = {
+      "Fn::Join": [
+        "",
+        [
+          {
+            Ref: "HttpApi"
+          },
+          ".execute-api.",
+          {
+            "Ref": "AWS::Region"
+          },
+          ".amazonaws.com"
+        ]
+      ]
+    }
   }
 
   prepareRobotsBucket(distributionConfig) {
@@ -108,7 +123,8 @@ class ServerlessApiCloudFrontPlugin {
   }
 
   prepareOrigins(distributionConfig) {
-    distributionConfig.Origins[0].OriginPath = `/${this.options.stage}`;
+    // distributionConfig.Origins[0].OriginPath = `/${this.options.stage}`;
+    distributionConfig.Origins[0].OriginPath = "";
   }
 
   prepareCookies(distributionConfig) {
