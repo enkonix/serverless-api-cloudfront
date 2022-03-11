@@ -60,7 +60,7 @@ class ServerlessApiCloudFrontPlugin {
     this.prepareLogging(distributionConfig);
     this.prepareDomain(distributionConfig);
     this.preparePriceClass(distributionConfig);
-    // this.prepareOrigins(distributionConfig);
+    this.prepareOrigins(distributionConfig);
     this.prepareCookies(distributionConfig);
     this.prepareHeaders(distributionConfig);
     this.prepareQueryString(distributionConfig);

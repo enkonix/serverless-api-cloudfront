@@ -18,7 +18,7 @@ Resources:
             HTTPSPort: '443'
             OriginProtocolPolicy: https-only
             OriginSSLProtocols: [ "TLSv1", "TLSv1.1", "TLSv1.2" ]
-          # OriginPath: "/dev"
+            OriginPath: "/dev"
         - Id: Robots
           DomainName: "s3.amazonaws.com"
           CustomOriginConfig:
