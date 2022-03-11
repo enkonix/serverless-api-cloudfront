@@ -92,21 +92,6 @@ class ServerlessApiCloudFrontPlugin {
     } else {
       delete distributionConfig.Aliases;
     }
-    distributionConfig.Origins[0].DomainName = {
-      "Fn::Join": [
-        "",
-        [
-          {
-            Ref: "HttpApi"
-          },
-          ".execute-api.",
-          {
-            "Ref": "AWS::Region"
-          },
-          ".amazonaws.com"
-        ]
-      ]
-    }
   }
 
   prepareRobotsBucket(distributionConfig) {
