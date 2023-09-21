@@ -10,7 +10,7 @@ class ServerlessApiCloudFrontPlugin {
     this.options = options;
 
     this.hooks = {
-      'aws:package:createDeploymentArtifacts': this.createDeploymentArtifacts.bind(this),
+      'before:package:createDeploymentArtifacts': this.createDeploymentArtifacts.bind(this),
       'aws:info:displayStackOutputs': this.printSummary.bind(this),
     };
   }
